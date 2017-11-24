@@ -1,6 +1,8 @@
 NOM=PROJET_IN301
 
-test: slider
+all: slider
+
+run: slider
 	./slider test.slider
 
 # Edition de liens

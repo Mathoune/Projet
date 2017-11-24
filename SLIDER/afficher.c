@@ -25,9 +25,32 @@ void afficher_grille(SLIDER S) {
 }
 
 void afficher_murs(SLIDER S) {
+	int n=0; POINT p1,p2;
+	while (n!=S.N)
+	{
+		if (S.murz[n]==0){
+			p1.x=(S.murx[n])*50; p2.x=p1.x+50;
+			p1.y=p2.y=(S.mury[n])*50;
+		}
+		if (S.murz[n]==3){
+			p1.y=(S.mury[n])*50; p2.y=p1.y+50;
+			p1.x=p2.x=50+(S.murx[n])*50;
+		}
+		if (S.murz[n]==6){
+			p1.x=(S.murx[n])*50; p2.x=p1.x+50;
+			p1.y=p2.y=(S.mury[n])*50;
+		}
+		if (S.murz[n]==9){
+			p1.y=(S.mury[n])*50; p2.y=p1.y+50;
+			p1.x=p2.x=(S.murx[n])*50;
+		}
+		draw_line(p1,p2,red);
+		n++;
+	}
 }
 
 void afficher_le_slider(SLIDER S) {
+	
 }
 
 void afficher_sortie(SLIDER S) {

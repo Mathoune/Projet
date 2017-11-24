@@ -23,13 +23,16 @@ SLIDER lire_sortie(FILE* fichier, SLIDER S)
 SLIDER lire_murs(FILE* fichier, SLIDER S)
 {
 	fscanf(fichier,"%d ", &S.N);
-	S.murs_x=malloc((S.N)*sizeof(int));
-	S.murs_y=malloc((S.N)*sizeof(int));
-	int n=S.N;
-	while(n)
+	S.murx=malloc((S.N)*sizeof(int));
+	S.mury=malloc((S.N)*sizeof(int));
+	S.murz=malloc((S.N)*sizeof(int));
+	printf ("N= %d\n", S.N);
+	int n=0;
+	while(n!=S.N)
 	{
-		fscanf(fichier,"%d %d", S.murs_x, S.murs_y);
-		n--;
+		fscanf(fichier,"%d %d %d", &S.murx[n], &S.mury[n], &S.murz[n]);
+		printf ("murx= %d mury= %d murz= %d \n", S.murx[n], S.mury[n], S.murz[n]);
+		n++;
 	}
 	
 	return S;
