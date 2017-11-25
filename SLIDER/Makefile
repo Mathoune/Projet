@@ -14,13 +14,15 @@ slider.o: slider.c mes_types.h lire_ecrire.h
 	gcc -c -Wall slider.c
 
 # Compilation
-lire_ecrire.o: lire_ecrire.c
+lire_ecrire.o: lire_ecrire.c 
 	gcc -c -Wall lire_ecrire.c
 
 # Compilation
 afficher.o: afficher.c
-#	gcc -c -Wall   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT  afficher.c
 	gcc -c -Wall  `sdl-config --cflags`   afficher.c
+	
+jeu.o: jeu.c 
+	gcc -c -Wall jeu.c
 
 editeur:
 	geany Makefile *.c *.h

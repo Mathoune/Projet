@@ -15,7 +15,8 @@ struct slider {
 
 typedef struct slider SLIDER;
 
-struct save {
-	slider s;
-		struct save* suiv;
+struct jeu {
+	SLIDER s;
+		struct jeu* suiv;
 };
+typedef struct jeu JEU;

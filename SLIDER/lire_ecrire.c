@@ -5,13 +5,11 @@
 SLIDER lire_taille(FILE* fichier, SLIDER S)
 {
 	fscanf(fichier,"%d %d ",&S.L, &S.H);
-	//printf ("S.H= %d S.L= %d \n", S.H, S.L);
 	return S;
 }
 SLIDER lire_position(FILE* fichier, SLIDER S)
 {
 	fscanf(fichier,"%d %d ",&S.x, &S.y);
-	//printf ("S.x= %d S.y= %d \n", S.x, S.y);
 	return S;
 }
 SLIDER lire_sortie(FILE* fichier, SLIDER S)

@@ -1,5 +1,4 @@
 #include <uvsqgraphics.h>
-
 #include "mes_types.h"
 #define Taille_Case 50
 
@@ -32,13 +31,13 @@ void afficher_murs(SLIDER S) {
 			p1.x=(S.murx[n])*Taille_Case; p2.x=p1.x+Taille_Case;
 			p1.y=p2.y=(S.mury[n])*Taille_Case;
 		}
-		if (S.murz[n]==3){
-			p1.y=(S.mury[n])*Taille_Case; p2.y=p1.y+Taille_Case;
-			p1.x=p2.x=Taille_Case+(S.murx[n])*Taille_Case;
-		}
 		if (S.murz[n]==6){
 			p1.x=(S.murx[n])*Taille_Case; p2.x=p1.x+Taille_Case;
 			p1.y=p2.y=(S.mury[n])*Taille_Case;
+		}
+		if (S.murz[n]==3){
+			p1.y=(S.mury[n])*Taille_Case; p2.y=p1.y+Taille_Case;
+			p1.x=p2.x=Taille_Case+(S.murx[n])*Taille_Case;
 		}
 		if (S.murz[n]==9){
 			p1.y=(S.mury[n])*Taille_Case; p2.y=p1.y+Taille_Case;
