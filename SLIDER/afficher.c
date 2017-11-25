@@ -75,7 +75,7 @@ void afficher_sortie(SLIDER S) {
 }
 
 
-void afficher_slider (SLIDER S) {
+void init_slider (SLIDER S) {
 	afficher_grille(S);
 	afficher_murs(S);
 	afficher_le_slider(S);

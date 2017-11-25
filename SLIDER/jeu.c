@@ -3,19 +3,20 @@
 #include <stdio.h>
 #include "mes_types.h"
 
-JEU ajout(JEU J, SLIDER s){
+JEU ajout(JEU j, SLIDER s){
   JEU tmp = malloc(sizeof(struct JEU));
   tmp->s= s;
-  tmp->suiv = J;
+  tmp->suiv = j;
   return tmp;
 }
 
-Liste supprimeDebut(JEU j){
-  JEU tmp;
-  if(j != NULL){
-    tmp = j;
+JEU supprimeDebut(JEU j){
+  if(j != NULL)
+  {
     j = j->suiv;
-    free(tmp);
   }
   return j;
 }
+
+
+
