@@ -10,6 +10,12 @@ struct slider {
 	int *murx;
 	int *mury;
 	int *murz;
+	int coups;
 };
 
 typedef struct slider SLIDER;
+
+struct save {
+	slider s;
+		struct save* suiv;
+};

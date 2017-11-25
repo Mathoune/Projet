@@ -5,7 +5,7 @@
 #include "lire_ecrire.h"
 #include "afficher.h"
 
-int main (int argc, char*argv[]) {
+int main (int argc, char* argv[]) {
 	printf("Debut slider\n");
 
 	SLIDER S;
@@ -18,6 +18,6 @@ int main (int argc, char*argv[]) {
 
 	printf("Fin slider\n");
 	finir_affichage(S);
-	wait_escape();
+	
 	exit(0);
 }

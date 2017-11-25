@@ -17,7 +17,7 @@ SLIDER lire_position(FILE* fichier, SLIDER S)
 SLIDER lire_sortie(FILE* fichier, SLIDER S)
 {
 	fscanf(fichier,"%d %d ",&S.px, &S.py);
-	//printf ("S.px= %d S.py= %d \n", S.px, S.py);
+	printf ("S.px= %d S.py= %d \n", S.px, S.py);
 	return S;
 }
 SLIDER lire_murs(FILE* fichier, SLIDER S)
