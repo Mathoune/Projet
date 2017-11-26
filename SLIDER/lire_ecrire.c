@@ -38,7 +38,7 @@ SLIDER lire_murs(FILE* fichier, SLIDER S)
 
 
 
-SLIDER lire_fichier(char *nom) {
+SLIDER init_slider(char *nom) {
 
 	FILE* fichier= NULL;
 	fichier=fopen(nom,"r");

@@ -46,7 +46,7 @@ void afficher_murs(SLIDER S) {
 		draw_line(p1,p2,red);
 		n++;
 	}
-	free(S.murx); free(S.mury); free(S.murz);
+	//free(S.murx); free(S.mury); free(S.murz);
 }
 
 void afficher_le_slider(SLIDER S) {
@@ -75,7 +75,8 @@ void afficher_sortie(SLIDER S) {
 }
 
 
-void init_slider (SLIDER S) {
+void afficher_slider (SLIDER S) {
+	initialiser_affichage(S);
 	afficher_grille(S);
 	afficher_murs(S);
 	afficher_le_slider(S);

@@ -1,4 +1,4 @@
 
-SLIDER lire_fichier(char *nom);
+SLIDER init_slider(char *nom);
 
 void ecrire_fichier(SLIDER S, char*nom);

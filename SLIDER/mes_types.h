@@ -19,4 +19,4 @@ struct jeu {
 	SLIDER s;
 		struct jeu* suiv;
 };
-typedef struct jeu JEU;
+typedef struct jeu *JEU;
