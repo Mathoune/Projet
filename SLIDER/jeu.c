@@ -20,32 +20,38 @@ JEU supprimeDebut(JEU j){
   return j;
 }
 
-JEU bouge(JEU j, SLIDER S)
+SLIDER bouge(JEU j, SLIDER S)
 {
 	char c;
-	int a,i,f; a=i=f=0;
+	int a,f,i; 
 	POINT p;
-	while(i < 20)
+	for(i=0;i<10;i++)
 	{
-		a = wait_key_arrow_clic(&c, &f, &p);
+		a=wait_key_arrow_clic(&c,&f,&p);
+		wait_clic();
 		effacer_le_slider(S);
-		if(f == FLECHE_GAUCHE){
-		 S=avance_gauche(S);
-		}
-		if(f == FLECHE_DROITE){
-		  S=avance_droite(S);
-		}
-		if(f == FLECHE_HAUT){
-		  S=avance_haut(S);
-		}
-		if(f == FLECHE_BAS){
-		  S=avance_bas(S);
+		if (a==EST_FLECHE)
+		{
+			if(f == FLECHE_GAUCHE){
+			 S=avance_gauche(S);
+			}
+			if(f == FLECHE_DROITE){
+			  S=avance_droite(S);	  
+			}
+			if(f == FLECHE_HAUTE){
+			  S=avance_haut(S);
+			}
+			if(f == FLECHE_BAS){
+			  S=avance_bas(S); 
+			}
 		}
 		j=ajout(j,S);
-		
+		a=f=0;
 		afficher_le_slider(S);
+		
 	}
-return j;
+	
+return S;
 }
 
 

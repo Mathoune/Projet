@@ -29,7 +29,7 @@ void afficher_murs(SLIDER S) {
 	{
 		if (S.murz[n]==0){
 			p1.x=(S.murx[n])*Taille_Case; p2.x=p1.x+Taille_Case;
-			p1.y=p2.y=(S.mury[n])*Taille_Case;
+			p1.y=p2.y=(S.mury[n])*Taille_Case+Taille_Case;
 		}
 		if (S.murz[n]==6){
 			p1.x=(S.murx[n])*Taille_Case; p2.x=p1.x+Taille_Case;
@@ -51,15 +51,16 @@ void afficher_murs(SLIDER S) {
 
 void afficher_le_slider(SLIDER S) {
 	POINT p;
-	p.x=S.x*Taille_Case-(Taille_Case/2);
-	p.y=S.y*Taille_Case-(Taille_Case/2);
+	p.x=S.x*Taille_Case+(Taille_Case/2);
+	p.y=S.y*Taille_Case+(Taille_Case/2);
 	draw_fill_circle(p,20,yellow);
+	printf("affiche le slider \n");
 }
 
 void effacer_le_slider(SLIDER S) {
 	POINT p;
-	p.x=S.x*Taille_Case-(Taille_Case/2);
-	p.y=S.y*Taille_Case-(Taille_Case/2);
+	p.x=S.x*Taille_Case+(Taille_Case/2);
+	p.y=S.y*Taille_Case+(Taille_Case/2);
 	draw_fill_circle(p,20,noir);
 }
 
