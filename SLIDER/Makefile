@@ -15,13 +15,13 @@ slider.o: slider.c mes_types.h lire_ecrire.h afficher.h
 
 # Compilation
 lire_ecrire.o: lire_ecrire.c mes_types.h
-	gcc -c -Wall lire_ecrire.c
+	gcc -c -Wall `sdl-config --cflags` lire_ecrire.c
 
 # Compilation
 afficher.o: afficher.c mes_types.h
 	gcc -c -Wall `sdl-config --cflags` afficher.c
 	
-deplacements.o: deplacements.c mes_types.h 
+deplacements.o: deplacements.c mes_types.h afficher.h
 	gcc -c -Wall `sdl-config --cflags` deplacements.c
 	
 jeu.o: jeu.c deplacements.h afficher.h
@@ -42,7 +42,8 @@ zip:
 	zip $(NOM).zip $(NOM)/*
 #	rm -fr $(NOM)
 
-
+valgrind: slider
+	valgrind ./slider test.slider
 
 clean:
 	rm -rf $(NOM)

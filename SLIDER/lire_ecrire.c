@@ -10,12 +10,13 @@ SLIDER lire_taille(FILE* fichier, SLIDER S)
 SLIDER lire_position(FILE* fichier, SLIDER S)
 {
 	fscanf(fichier,"%d %d ",&S.x, &S.y);
+	S.p.x=S.x*TAILLE_CASE+(TAILLE_CASE/2);
+	S.p.y=S.y*TAILLE_CASE+(TAILLE_CASE/2);
 	return S;
 }
 SLIDER lire_sortie(FILE* fichier, SLIDER S)
 {
-	fscanf(fichier,"%d %d ",&S.px, &S.py);
-	printf ("S.px= %d S.py= %d \n", S.px, S.py);
+	fscanf(fichier,"%d %d ",&S.sx, &S.sy);
 	return S;
 }
 SLIDER lire_murs(FILE* fichier, SLIDER S)
@@ -24,12 +25,12 @@ SLIDER lire_murs(FILE* fichier, SLIDER S)
 	S.murx=malloc((S.N)*sizeof(int));
 	S.mury=malloc((S.N)*sizeof(int));
 	S.murz=malloc((S.N)*sizeof(int));
-	printf ("N= %d\n", S.N);
+	printf ("N= %d \n", S.N);
 	int n=0;
 	while(n!=S.N)
 	{
 		fscanf(fichier,"%d %d %d", &S.murx[n], &S.mury[n], &S.murz[n]);
-		printf ("murx= %d mury= %d murz= %d \n", S.murx[n], S.mury[n], S.murz[n]);
+		printf("%d %d %d \n", S.murx[n], S.mury[n], S.murz[n]);
 		n++;
 	}
 	
@@ -42,7 +43,7 @@ SLIDER init_slider(char *nom) {
 
 	FILE* fichier= NULL;
 	fichier=fopen(nom,"r");
-	printf("nom = %s\n",nom);
+	//printf("nom = %s\n",nom);
 	SLIDER S;
 	S = lire_taille(fichier, S);
 	S = lire_position(fichier, S);

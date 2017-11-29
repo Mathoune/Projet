@@ -50,31 +50,23 @@ void afficher_murs(SLIDER S) {
 }
 
 void afficher_le_slider(SLIDER S) {
-	POINT p;
-	p.x=S.x*Taille_Case+(Taille_Case/2);
-	p.y=S.y*Taille_Case+(Taille_Case/2);
-	draw_fill_circle(p,20,yellow);
-	printf("affiche le slider \n");
+	draw_fill_circle(S.p,20,yellow);
 }
 
 void effacer_le_slider(SLIDER S) {
-	POINT p;
-	p.x=S.x*Taille_Case+(Taille_Case/2);
-	p.y=S.y*Taille_Case+(Taille_Case/2);
-	draw_fill_circle(p,20,noir);
+	draw_fill_circle(S.p,20,noir);
 }
 
 
 void afficher_sortie(SLIDER S) {
 	
 	POINT p1,p2;
-	p1.x=(S.px*Taille_Case); 
-	p1.y=(S.py*Taille_Case);
+	p1.x=(S.sx*Taille_Case); 
+	p1.y=(S.sy*Taille_Case);
 	p2.x=p1.x+Taille_Case;
 	p2.y=p1.y+Taille_Case;
 	draw_fill_rectangle(p1,p2,white);
 }
-
 
 void afficher_slider (SLIDER S) {
 	initialiser_affichage(S);

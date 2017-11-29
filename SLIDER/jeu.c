@@ -23,35 +23,37 @@ JEU supprimeDebut(JEU j){
 SLIDER bouge(JEU j, SLIDER S)
 {
 	char c;
-	int a,f,i; 
+	int a,f; 
 	POINT p;
-	for(i=0;i<10;i++)
+	
+	while ((S.y!=S.sy)||(S.x !=S.sx))
 	{
 		a=wait_key_arrow_clic(&c,&f,&p);
 		wait_clic();
 		effacer_le_slider(S);
-		if (a==EST_FLECHE)
-		{
+		
 			if(f == FLECHE_GAUCHE){
 			 S=avance_gauche(S);
+			 printf("gauche");
 			}
 			if(f == FLECHE_DROITE){
-			  S=avance_droite(S);	  
+			  S=avance_droite(S);	
+			  printf("droite");  
 			}
 			if(f == FLECHE_HAUTE){
 			  S=avance_haut(S);
+			  printf("haut");
 			}
 			if(f == FLECHE_BAS){
 			  S=avance_bas(S); 
+			  printf("bas");
 			}
-		}
+
 		j=ajout(j,S);
-		a=f=0;
-		afficher_le_slider(S);
 		
+		afficher_le_slider(S);	
 	}
-	
-return S;
+	return S;
 }
 
 
