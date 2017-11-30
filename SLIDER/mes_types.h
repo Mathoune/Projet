@@ -5,7 +5,7 @@
 struct slider {
 	int L,H;	 // Largeur et hauteur de la grille
 	int x,y; 	// Position du slider en nombre de case
-	POINT p;	 // Position du slider en coordonnées
+	int px, py;	 // Position du slider en coordonnées
 	int sx,sy;   // Position sortie
 	int N; 		// Nombre de murs
 	int *murx;
@@ -16,8 +16,15 @@ struct slider {
 typedef struct slider SLIDER;
 
 
-struct jeu {
-	SLIDER s;
-		struct jeu* suiv;
+struct element {
+	SLIDER S;
+	struct element *p_suiv;
+	struct element *p_prec;
 };
-typedef struct jeu *JEU;
+
+struct liste{
+	int taille;
+	struct liste *p_tete;
+	struct liste *p_queue;
+};
+typedef struct liste LISTE;

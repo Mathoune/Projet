@@ -10,8 +10,8 @@ SLIDER lire_taille(FILE* fichier, SLIDER S)
 SLIDER lire_position(FILE* fichier, SLIDER S)
 {
 	fscanf(fichier,"%d %d ",&S.x, &S.y);
-	S.p.x=S.x*TAILLE_CASE+(TAILLE_CASE/2);
-	S.p.y=S.y*TAILLE_CASE+(TAILLE_CASE/2);
+	S.px=S.x*TAILLE_CASE+(TAILLE_CASE/2);
+	S.py=S.y*TAILLE_CASE+(TAILLE_CASE/2);
 	return S;
 }
 SLIDER lire_sortie(FILE* fichier, SLIDER S)

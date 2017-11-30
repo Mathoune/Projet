@@ -30,7 +30,7 @@ int mur_verticalG(SLIDER S)// retourne la postion à gauche du mur le plus proch
 int mur_verticalD(SLIDER S)
 {
 	int a,tmp,n;
-	a=tmp=-1;
+	a=tmp=S.L+1;
 	for(n=0;n<S.N;n++)
 	{
 		if (S.mury[n]==S.y && S.murx[n]==S.x && S.murz[n]==3)
@@ -39,21 +39,23 @@ int mur_verticalD(SLIDER S)
 		}
 		if (S.mury[n]==S.y && S.murx[n]>S.x && S.murz[n]==9)
 		{
-			tmp=S.murx[n]+1;
+			tmp=S.murx[n]-1;
+			printf("ici \n");
 		}
 		if (S.mury[n]==S.y && S.murx[n]>S.x && S.murz[n]==3)
 		{
 			tmp=S.murx[n];
+			printf("la \n");
 		}
-		if (tmp>a) a=tmp;
+		if (tmp<a) a=tmp;
 	}
-	if(a==-1) a=S.L-1;
+	if(a==S.L+1) a=S.L-1;
 	return a;
 }
 int mur_horizontalH(SLIDER S)// retourne la position du slider en dessous du mur le plus proche de lui
 {
 	int a,tmp,n;
-	a=tmp=-1;
+	a=tmp=S.H+1;
 	for(n=0;n<S.N;n++)
 	{
 		if (S.mury[n]==S.y && S.murx[n]==S.x && S.murz[n]==0)
@@ -70,13 +72,13 @@ int mur_horizontalH(SLIDER S)// retourne la position du slider en dessous du mur
 		}
 		if (tmp>a) a=tmp;
 	}
-	if(a==-1) a=S.H-1;
+	if(a==S.H+1) a=S.H-1;
 	return a;
 }
 int mur_horizontalB(SLIDER S)
 {
 	int a,tmp,n;
-	a=tmp=-1;
+	a=tmp=-2;
 	for(n=0;n<S.N;n++)
 	{
 		if (S.mury[n]==S.y && S.murx[n]==S.x && S.murz[n]==6)
@@ -93,62 +95,87 @@ int mur_horizontalB(SLIDER S)
 		}
 		if (tmp>a) a=tmp;
 	}
-	if(a==-1) a=0;
+	if(a==-2) a=0;
 	return a;
 }
 
 SLIDER avance_droite(SLIDER S)
 {
+	
 	int a,i;
 	a=mur_verticalD(S);
-
-	for(i=S.x;i<4*a;i++)
+	printf("a= %d\n",a);
+	S.x=a;
+	if (a>S.sx && S.y==S.sy)
 	{
-		attendre(60);
-		effacer_le_slider(S);
-		S.p.x+=10;
-		//attendre(20);
-		afficher_le_slider(S);
+		a=S.sx;
 	}
+	printf("a= %d\n",a);
+	a=a*TAILLE_CASE+(TAILLE_CASE/2);
+		for(i=S.px;i<a;i+=50)
+		{
+			attendre(10);
+			effacer_le_slider(S);
+			S.px+=50;
+			afficher_le_slider(S);
+		}
+	
 	return S;
 }
 SLIDER avance_gauche(SLIDER S) 
 {
-	int a;
+	int a,i;
 	a=mur_verticalG(S);
-
-	if (a!=-1)
+	S.x=a;
+	if (a<S.sx && S.y==S.sy)
 	{
-		effacer_le_slider(S);
-		S.x=a;
-		attendre(60);
-		afficher_le_slider(S);
+		a=S.sx;
 	}
+	a=a*TAILLE_CASE+(TAILLE_CASE/2);
+		for(i=S.px;i>a;i-=50)
+		{
+			attendre(10);
+			effacer_le_slider(S);
+			S.px-=50;
+			afficher_le_slider(S);
+		}
 	return S;
 }
 SLIDER avance_haut(SLIDER S)
 {
-	int a;
+	int a,i;
 	a=mur_horizontalH(S);
-	if (a!=-1)
+	S.y=a;
+	if (a>S.sy && S.x==S.sx)
 	{
-		effacer_le_slider(S);
-		S.y=a;
-		attendre(60);
-		afficher_le_slider(S);
+		a=S.sy;
 	}
+	a=a*TAILLE_CASE+(TAILLE_CASE/2);
+		for(i=S.py;i<a;i+=50)
+		{
+			attendre(10);
+			effacer_le_slider(S);
+			S.py+=50;
+			afficher_le_slider(S);
+		}
+	
 	return S;
 }
 SLIDER avance_bas(SLIDER S)
-{
-	int a;
+{	int a,i;
 	a=mur_horizontalB(S);
-	if (a!=-1)
+	S.y=a;
+	if (a<S.sy && S.x==S.sx)
 	{
-		effacer_le_slider(S);
-		S.y=a;
-		attendre(60);
-		afficher_le_slider(S);
+		a=S.sy;
 	}
+	a=a*TAILLE_CASE+(TAILLE_CASE/2);
+		for(i=S.py;i>a;i-=50)
+		{
+			attendre(10);
+			effacer_le_slider(S);
+			S.py-=50;
+			afficher_le_slider(S);
+		}
 	return S;
 }

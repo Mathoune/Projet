@@ -25,7 +25,7 @@ void afficher_grille(SLIDER S) {
 
 void afficher_murs(SLIDER S) {
 	int n=0; POINT p1,p2;
-	while (n!=S.N)
+	while (n!=(S.N-1))
 	{
 		if (S.murz[n]==0){
 			p1.x=(S.murx[n])*Taille_Case; p2.x=p1.x+Taille_Case;
@@ -46,15 +46,16 @@ void afficher_murs(SLIDER S) {
 		draw_line(p1,p2,red);
 		n++;
 	}
-	//free(S.murx); free(S.mury); free(S.murz);
 }
 
 void afficher_le_slider(SLIDER S) {
-	draw_fill_circle(S.p,20,yellow);
+	POINT p; p.x=S.px; p.y=S.py;
+	draw_fill_circle(p,20,yellow);
 }
 
 void effacer_le_slider(SLIDER S) {
-	draw_fill_circle(S.p,20,noir);
+	POINT p; p.x=S.px; p.y=S.py;
+	draw_fill_circle(p,20,noir);
 }
 
 
@@ -74,6 +75,12 @@ void afficher_slider (SLIDER S) {
 	afficher_murs(S);
 	afficher_le_slider(S);
 	afficher_sortie(S);
+}
+void affichage(SLIDER S)
+{
+	afficher_grille(S);
+	afficher_murs(S);
+	afficher_le_slider(S);
 }
 
 
