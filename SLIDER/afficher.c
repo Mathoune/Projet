@@ -25,7 +25,7 @@ void afficher_grille(SLIDER S) {
 
 void afficher_murs(SLIDER S) {
 	int n=0; POINT p1,p2;
-	while (n!=(S.N-1))
+	while (n!=S.N)
 	{
 		if (S.murz[n]==0){
 			p1.x=(S.murx[n])*Taille_Case; p2.x=p1.x+Taille_Case;

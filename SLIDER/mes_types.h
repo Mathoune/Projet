@@ -16,15 +16,8 @@ struct slider {
 typedef struct slider SLIDER;
 
 
-struct element {
-	SLIDER S;
-	struct element *p_suiv;
-	struct element *p_prec;
+struct element{
+  SLIDER S;
+  struct element *suiv;
 };
-
-struct liste{
-	int taille;
-	struct liste *p_tete;
-	struct liste *p_queue;
-};
-typedef struct liste LISTE;
+typedef struct element *LISTE;

@@ -101,16 +101,14 @@ int mur_horizontalB(SLIDER S)
 
 SLIDER avance_droite(SLIDER S)
 {
-	
 	int a,i;
 	a=mur_verticalD(S);
-	printf("a= %d\n",a);
 	S.x=a;
-	if (a>S.sx && S.y==S.sy)
+	printf("S.x= %d",S.x);
+	if (a<S.sx && S.y==S.sy)
 	{
 		a=S.sx;
 	}
-	printf("a= %d\n",a);
 	a=a*TAILLE_CASE+(TAILLE_CASE/2);
 		for(i=S.px;i<a;i+=50)
 		{

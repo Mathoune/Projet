@@ -8,13 +8,13 @@
 
 int main (int argc, char* argv[]) {
 	printf("Debut slider\n");
-	JEU j; 
+	LISTE l=NULL; 
 	SLIDER S;
 	S = init_slider(argv[1]);
 	afficher_slider (S);
 	int i;
 	
-	S=bouge(j,S);
+	S=bouge(l,S);
 	
 	printf("Fin slider\n");
 	finir_affichage(S);
