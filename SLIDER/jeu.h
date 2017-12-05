@@ -1,1 +1,1 @@
-SLIDER bouge(SLIDER s);
+LISTE bouge(SLIDER s,LISTE l);

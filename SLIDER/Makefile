@@ -6,11 +6,11 @@ run: slider
 	./slider test.slider
 
 # Edition de liens
-slider: slider.o lire_ecrire.o afficher.o jeu.o deplacements.o
-	gcc slider.o lire_ecrire.o afficher.o jeu.o deplacements.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
+slider: slider.o lire_ecrire.o afficher.o jeu.o deplacements.o listes_memo.o
+	gcc slider.o lire_ecrire.o afficher.o jeu.o deplacements.o listes_memo.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
 
 # Compilation
-slider.o: slider.c mes_types.h lire_ecrire.h afficher.h 
+slider.o: slider.c mes_types.h lire_ecrire.h afficher.h  listes_memo.h
 	gcc -c -Wall `sdl-config --cflags` slider.c
 
 # Compilation
@@ -20,12 +20,22 @@ lire_ecrire.o: lire_ecrire.c mes_types.h
 # Compilation
 afficher.o: afficher.c mes_types.h
 	gcc -c -Wall `sdl-config --cflags` afficher.c
-	
+
+# Compilation
+listes_memo.o: listes_memo.c mes_types.h afficher.h
+	gcc -c -Wall `sdl-config --cflags` listes_memo.c	
+
+# Compilation
 deplacements.o: deplacements.c mes_types.h afficher.h
 	gcc -c -Wall `sdl-config --cflags` deplacements.c
-	
-jeu.o: jeu.c deplacements.h afficher.h
+
+# Compilation	
+jeu.o: jeu.c deplacements.h afficher.h listes_memo.h
 	gcc -c -Wall `sdl-config --cflags` jeu.c
+
+
+indent:
+	indent *.c
 
 editeur:
 	geany Makefile *.c *.h

@@ -1,23 +1,23 @@
 #include <uvsqgraphics.h>
-#define TAILLE_CASE 50
+#define Taille_Case 50
 
 
 struct slider {
-	int L,H;	 // Largeur et hauteur de la grille
-	int x,y; 	// Position du slider en nombre de case
-	int px, py;	 // Position du slider en coordonnées
+	int L,H;	 	// Largeur et hauteur de la grille
+	int x,y; 	   // Position du slider en nombre de case
+	POINT ps;	  // Position du slider en coordonnées
 	int sx,sy;   // Position sortie
 	int N; 		// Nombre de murs
-	int *murx;
-	int *mury;
-	int *murz;
-	int coups;
+	int *murx; // Position en x des murs
+	int *mury; // Position en y des murs
+	int *murz; // Direction des murs
+	int coups; // Nombre de coups
 };
 typedef struct slider SLIDER;
 
 
-struct element{
-  SLIDER S;
+struct element{ // Liste chainée pour sauvegarder la position du slider
+  POINT ps;
   struct element *suiv;
 };
 typedef struct element *LISTE;

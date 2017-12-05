@@ -4,17 +4,12 @@
 #include "mes_types.h"
 #include "jeu.h"
 #include "afficher.h"
-
-
-
-/*Test sur toute la ligne si il y a un mur vertical, s'il y en a un prend la valeur de la case à gauche, puis compare
- * laquelle est plus pres du Slider*/
 int
-mur_verticalG (SLIDER S)	// Retourne la postion à gauche du mur le plus proche à gauche du slider
+mur_verticalG (SLIDER S)	// retourne la postion à gauche du mur le plus proche à gauche du slider
 {
   int a, tmp, n;
   a = tmp = -1;
-  for (n = 0; n < S.N; n++) 
+  for (n = 0; n < S.N; n++)
     {
       if (S.mury[n] == S.y && S.murx[n] == S.x && S.murz[n] == 9)
 	return S.x;
@@ -31,7 +26,7 @@ mur_verticalG (SLIDER S)	// Retourne la postion à gauche du mur le plus proche 
 }
 
 int
-mur_verticalD (SLIDER S) // Retourne la postion à droite du mur le plus proche à droite du slider
+mur_verticalD (SLIDER S)
 {
   int a, tmp, n;
   a = tmp = S.L + 1;
@@ -52,7 +47,7 @@ mur_verticalD (SLIDER S) // Retourne la postion à droite du mur le plus proche 
 }
 
 int
-mur_horizontalH (SLIDER S)	// retourne la position du slider au dessus du mur le plus proche de lui
+mur_horizontalH (SLIDER S)	// retourne la position du slider en dessous du mur le plus proche de lui
 {
   int a, tmp, n;
   a = tmp = S.H + 1;
@@ -73,7 +68,7 @@ mur_horizontalH (SLIDER S)	// retourne la position du slider au dessus du mur le
 }
 
 int
-mur_horizontalB (SLIDER S) 	// retourne la position du slider en dessous du mur le plus proche de lui
+mur_horizontalB (SLIDER S)
 {
   int a, tmp, n;
   a = tmp = -2;
@@ -103,12 +98,12 @@ avance_droite (SLIDER S)
     {
       a = S.sx;
     }
-  a = a * Taille_Case + (Taille_Case / 2);
-  for (i = S.ps.x; i < a; i += Taille_Case)
+  a = a * TAILLE_CASE + (TAILLE_CASE / 2);
+  for (i = S.px; i < a; i += 50)
     {
       attendre (10);
       effacer_le_slider (S);
-      S.ps.x += Taille_Case;
+      S.px += 50;
       afficher_le_slider (S);
     }
 
@@ -125,12 +120,12 @@ avance_gauche (SLIDER S)
     {
       a = S.sx;
     }
-  a = a * Taille_Case + (Taille_Case / 2);
-  for (i = S.ps.x; i > a; i -= Taille_Case)
+  a = a * TAILLE_CASE + (TAILLE_CASE / 2);
+  for (i = S.px; i > a; i -= 50)
     {
       attendre (10);
       effacer_le_slider (S);
-      S.ps.x -= Taille_Case;
+      S.px -= 50;
       afficher_le_slider (S);
     }
   return S;
@@ -146,12 +141,12 @@ avance_haut (SLIDER S)
     {
       a = S.sy;
     }
-  a = a * Taille_Case + (Taille_Case / 2);
-  for (i = S.ps.y; i < a; i += Taille_Case)
+  a = a * TAILLE_CASE + (TAILLE_CASE / 2);
+  for (i = S.py; i < a; i += 50)
     {
       attendre (10);
       effacer_le_slider (S);
-      S.ps.y += Taille_Case;
+      S.py += 50;
       afficher_le_slider (S);
     }
 
@@ -168,17 +163,16 @@ avance_bas (SLIDER S)
     {
       a = S.sy;
     }
-  a = a * Taille_Case + (Taille_Case / 2);
-  for (i = S.ps.y; i > a; i -= Taille_Case)
+  a = a * TAILLE_CASE + (TAILLE_CASE / 2);
+  for (i = S.py; i > a; i -= 50)
     {
       attendre (10);
       effacer_le_slider (S);
-      S.ps.y -= Taille_Case;
+      S.py -= 50;
       afficher_le_slider (S);
     }
   return S;
 }
-
 SLIDER
 deplace (int f, SLIDER S)
 {
@@ -190,5 +184,6 @@ deplace (int f, SLIDER S)
     S = avance_haut (S);
   if (f == FLECHE_BAS)
     S = avance_bas (S);
+  S.coups++;
   return S;
 }

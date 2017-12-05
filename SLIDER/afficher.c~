@@ -1,17 +1,18 @@
 #include <uvsqgraphics.h>
 #include "mes_types.h"
+#define Taille_Case 50
 
 void
-initialiser_affichage (SLIDER S) //Initialise la fenetre
+initialiser_affichage (SLIDER S)
 {
   init_graphics (Taille_Case * S.L, Taille_Case * S.H);
 }
 
 void
-afficher_grille (SLIDER S) //Affiche lequadrillage
+afficher_grille (SLIDER S)
 {
   POINT p1, p2;
-  p1.x = p1.y = p2.x = p2.y = 0;
+  p1.x=p1.y=p2.x=p2.y = 0;
 
   p2.y = Taille_Case * S.H;
   for (p2.x = Taille_Case; p2.x < S.L * Taille_Case; p2.x += Taille_Case)
@@ -29,7 +30,7 @@ afficher_grille (SLIDER S) //Affiche lequadrillage
 }
 
 void
-afficher_murs (SLIDER S)//Affiche les murs
+afficher_murs (SLIDER S)
 {
   int n = 0;
   POINT p1, p2;
@@ -65,20 +66,26 @@ afficher_murs (SLIDER S)//Affiche les murs
 }
 
 void
-afficher_le_slider (SLIDER S) //Affiche le Slider
+afficher_le_slider (SLIDER S)
 {
-  draw_fill_circle (S.ps, Taille_Case/2, yellow);
+  POINT p;
+  p.x = S.px;
+  p.y = S.py;
+  draw_fill_circle (p, 20, yellow);
 }
 
 void
-effacer_le_slider (SLIDER S) //Efface le Slider
+effacer_le_slider (SLIDER S)
 {
-  draw_fill_circle (S.ps, Taille_Case/2, noir);
+  POINT p;
+  p.x = S.px;
+  p.y = S.py;
+  draw_fill_circle (p, 20, noir);
 }
 
 
 void
-afficher_sortie (SLIDER S) //Affiche la sortie
+afficher_sortie (SLIDER S)
 {
 
   POINT p1, p2;
@@ -90,7 +97,7 @@ afficher_sortie (SLIDER S) //Affiche la sortie
 }
 
 void
-afficher_slider (SLIDER S) //Affiche tout
+afficher_slider (SLIDER S)
 {
   initialiser_affichage (S);
   afficher_grille (S);
@@ -111,8 +118,5 @@ affichage (SLIDER S)
 void
 finir_affichage (SLIDER S)
 {
-	fill_screen(black);
-  POINT p; p.x=(S.L*Taille_Case)/2; p.y=(S.H*Taille_Case)/2;
-  aff_pol_centre("FELICITATIONS !!!!",30,p,blanc);
   wait_escape ();
 }
