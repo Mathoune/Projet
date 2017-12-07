@@ -8,7 +8,7 @@ initialiser_affichage (SLIDER S) //Initialise la fenetre
 }
 
 void
-afficher_grille (SLIDER S) //Affiche lequadrillage
+afficher_grille (SLIDER S) //Affiche le quadrillage
 {
   POINT p1, p2;
   p1.x = p1.y = p2.x = p2.y = 0;
