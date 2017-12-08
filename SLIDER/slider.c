@@ -31,6 +31,6 @@ main (int argc, char *argv[])
   finir_affichage (S);
   libere_murs (S);
   libere_liste (l);*/
-
+  wait_escape();
   exit (0);
 }

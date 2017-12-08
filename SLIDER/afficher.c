@@ -67,7 +67,7 @@ afficher_murs (SLIDER S)//Affiche les murs
 void
 afficher_le_slider (SLIDER S) //Affiche le Slider
 {
-  draw_fill_circle (S.ps, Taille_Case/2, yellow);
+  draw_fill_circle (S.ps, Taille_Case/2, red);
 }
 
 void
