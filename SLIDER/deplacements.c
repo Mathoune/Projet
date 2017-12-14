@@ -98,11 +98,13 @@ avance_droite (SLIDER S)
 {
   int a, i;
   a = mur_verticalD (S);
-  S.x = a;
-  if (a < S.sx && S.y == S.sy)
+  
+  if (S.x<S.sx && a > S.sx && S.y == S.sy)
     {
       a = S.sx;
     }
+   S.x = a;
+    printf("a= %d",a);
   a = a * Taille_Case + (Taille_Case / 2);
   for (i = S.ps.x; i < a; i += Taille_Case)
     {
@@ -120,11 +122,11 @@ avance_gauche (SLIDER S)
 {
   int a, i;
   a = mur_verticalG (S);
-  S.x = a;
-  if (a < S.sx && S.y == S.sy)
+  if (S.x>S.sx && a<S.sx && S.y == S.sy)
     {
       a = S.sx;
     }
+   S.x = a;
   a = a * Taille_Case + (Taille_Case / 2);
   for (i = S.ps.x; i > a; i -= Taille_Case)
     {
@@ -141,11 +143,11 @@ avance_haut (SLIDER S)
 {
   int a, i;
   a = mur_horizontalH (S);
-  S.y = a;
-  if (a > S.sy && S.x == S.sx)
+  if (S.y<S.sy && a > S.sy && S.x == S.sx)
     {
       a = S.sy;
     }
+  S.y = a;
   a = a * Taille_Case + (Taille_Case / 2);
   for (i = S.ps.y; i < a; i += Taille_Case)
     {
@@ -163,11 +165,11 @@ avance_bas (SLIDER S)
 {
   int a, i;
   a = mur_horizontalB (S);
-  S.y = a;
-  if (a < S.sy && S.x == S.sx)
+  if (S.y>S.sy && a < S.sy && S.x == S.sx)
     {
       a = S.sy;
     }
+    S.y = a;
   a = a * Taille_Case + (Taille_Case / 2);
   for (i = S.ps.y; i > a; i -= Taille_Case)
     {

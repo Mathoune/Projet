@@ -29,38 +29,38 @@ afficher_grille (SLIDER S) //Affiche le quadrillage
 }
 
 void
-afficher_murs (SLIDER S)//Affiche les murs
+afficher_murs (SLIDER S,int n,int i)//Affiche les murs
 {
-  int n = 0;
+
   POINT p1, p2;
-  while (n != S.N)
+  while (n != i)
     {
-      if (S.murz[n] == 0)
-	{
-	  p1.x = (S.murx[n]) * Taille_Case;
-	  p2.x = p1.x + Taille_Case;
-	  p1.y = p2.y = (S.mury[n]) * Taille_Case + Taille_Case;
-	}
-      if (S.murz[n] == 6)
-	{
-	  p1.x = (S.murx[n]) * Taille_Case;
-	  p2.x = p1.x + Taille_Case;
-	  p1.y = p2.y = (S.mury[n]) * Taille_Case;
-	}
-      if (S.murz[n] == 3)
-	{
-	  p1.y = (S.mury[n]) * Taille_Case;
-	  p2.y = p1.y + Taille_Case;
-	  p1.x = p2.x = Taille_Case + (S.murx[n]) * Taille_Case;
-	}
-      if (S.murz[n] == 9)
-	{
-	  p1.y = (S.mury[n]) * Taille_Case;
-	  p2.y = p1.y + Taille_Case;
-	  p1.x = p2.x = (S.murx[n]) * Taille_Case;
-	}
-      draw_line (p1, p2, red);
-      n++;
+		  if (S.murz[n] == 0)
+		{
+		  p1.x = (S.murx[n]) * Taille_Case;
+		  p2.x = p1.x + Taille_Case;
+		  p1.y = p2.y = (S.mury[n]) * Taille_Case + Taille_Case;
+		}
+		  if (S.murz[n] == 6)
+		{
+		  p1.x = (S.murx[n]) * Taille_Case;
+		  p2.x = p1.x + Taille_Case;
+		  p1.y = p2.y = (S.mury[n]) * Taille_Case;
+		}
+		  if (S.murz[n] == 3)
+		{
+		  p1.y = (S.mury[n]) * Taille_Case;
+		  p2.y = p1.y + Taille_Case;
+		  p1.x = p2.x = Taille_Case + (S.murx[n]) * Taille_Case;
+		}
+		  if (S.murz[n] == 9)
+		{
+		  p1.y = (S.mury[n]) * Taille_Case;
+		  p2.y = p1.y + Taille_Case;
+		  p1.x = p2.x = (S.murx[n]) * Taille_Case;
+		}
+		  draw_line (p1, p2, red);
+		  n++;
     }
 }
 
@@ -94,7 +94,7 @@ afficher_slider (SLIDER S) //Affiche tout
 {
   initialiser_affichage (S);
   afficher_grille (S);
-  afficher_murs (S);
+  afficher_murs (S,0,S.N);
   afficher_le_slider (S);
   afficher_sortie (S);
 }
@@ -103,7 +103,7 @@ void
 affichage (SLIDER S)
 {
   afficher_grille (S);
-  afficher_murs (S);
+  afficher_murs (S,0,S.N);
   afficher_le_slider (S);
 }
 
@@ -111,8 +111,9 @@ affichage (SLIDER S)
 void
 finir_affichage (SLIDER S)
 {
-	fill_screen(black);
-  POINT p; p.x=(S.L*Taille_Case)/2; p.y=(S.H*Taille_Case)/2;
+  fill_screen(black);
+  POINT p; 
+  p.x=(S.L*Taille_Case)/2;
+  p.y=(S.H*Taille_Case)/2;
   aff_pol_centre("FELICITATIONS !!!!",30,p,blanc);
-  wait_escape ();
 }

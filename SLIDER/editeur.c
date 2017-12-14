@@ -28,6 +28,7 @@ SLIDER ecrire_position_sortie(FILE * f,SLIDER S)
 	
 	return S;
 }
+
 SLIDER ecrire_position_slider(FILE * f,SLIDER S)
 {
 	int a,fl; char c; POINT p;
@@ -46,31 +47,60 @@ SLIDER ecrire_position_slider(FILE * f,SLIDER S)
 
 SLIDER ecrire_nb_murs(FILE * f,SLIDER S) //demande nombre de murs
 {
-	int a,fl; char c; POINT p;
-	a=0; c='a';
-	
-	while(a!= EST_TOUCHE){
-	a = wait_key_arrow_clic (&c, &fl, &p);
-    SDL_EnableKeyRepeat (0, SDL_DEFAULT_REPEAT_INTERVAL);
-    printf("%d",c);
+	int a,fl,n,i; char c; POINT p;
+	a=n=i=0;
+	printf("indiquez le nombre de murs souhaité apuyer sur fleche haute ou fleche bas pour varier de 1, puis valider sur une touche");
+	while(a!=EST_TOUCHE){
+		a=wait_key_arrow_clic (&c, &fl, &p);
+		SDL_EnableKeyRepeat (0, SDL_DEFAULT_REPEAT_INTERVAL);
+		if (fl==FLECHE_HAUTE)
+		{ 
+			i++;
+			printf("i= %d",i);
+		}
+		if(fl==FLECHE_BAS) 
+		{ 
+			i--;
+			printf("i= %d",i);
+		}
 	}
-	S.N=c;
+	S.N=i;
 	return S;
 }
-SLIDER place_mur(POINT p, SLIDER S)
+
+void dessine_un_mur(SLIDER S,int n)
 {
-	int x,y,z;
+	afficher_murs(S,n,n);
+}
+
+SLIDER place_mur(FILE * f, int fl,POINT p,int n, SLIDER S)
+{
+	S.murx[n]=p.x/Taille_Case; S.mury[n]=p.y/Taille_Case;
+	if (fl==FLECHE_HAUTE) S.murz[n]=0;
+	if (fl==FLECHE_DROITE) S.murz[n]=3;
+	if (fl==FLECHE_BAS) S.murz[n]=6;
+	if (fl==FLECHE_GAUCHE) S.murz[n]=9;
+	fprintf(f,"%d %d %d\n",S.murx[n],S.mury[n],S.murz[n]);
+	dessine_un_mur(S,n);
+	
 	return S;
 }
+
 SLIDER ecrire_murs(FILE * f,SLIDER S)
 {
 	int a,fl,n; char c; POINT p;
 	a=n=0;
+	S.murx = malloc ((S.N) * sizeof (int));
+    S.mury = malloc ((S.N) * sizeof (int));
+    S.murz = malloc ((S.N) * sizeof (int));
+    
 	while(a!= EST_CLIC && n!=S.N){
 	a = wait_key_arrow_clic (&c, &fl, &p);
-    S=place_mur(p,S);
+		while(a!= EST_FLECHE) a = wait_key_arrow_clic (&c, &fl, &p);
+    S=place_mur(f,fl,p,n,S);
     n++;
 	}
+	return S;
 }
 
 void editeur(SLIDER S, int L,int H,char* nom)
@@ -80,7 +110,6 @@ void editeur(SLIDER S, int L,int H,char* nom)
 	ecrire_taille_init(f,L,H,S);
 	ecrire_position_slider(f,S);
 	ecrire_position_sortie(f,S);
-	printf("Donnez le nombre de murs souhaité \n");
 	ecrire_nb_murs(f,S);
 	fclose(f);
 }

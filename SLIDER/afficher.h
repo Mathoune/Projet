@@ -6,3 +6,4 @@ void finir_affichage(SLIDER S);
 void affichage(SLIDER S);
 void initialiser_affichage (SLIDER S);
 void afficher_sortie (SLIDER S);
+void afficher_murs (SLIDER S,int n,int i);
