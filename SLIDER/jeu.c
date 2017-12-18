@@ -5,7 +5,7 @@
 #include "afficher.h"
 #include "deplacements.h"
 #include "listes_memo.h"
-int sortie(SLIDER S)
+int sortie(SLIDER S) //Test si le Slider est dans la sortie
 {
 	S.sx = S.sx * Taille_Case + (Taille_Case / 2);
     S.sy = S.sy * Taille_Case + (Taille_Case / 2);
@@ -15,7 +15,7 @@ int sortie(SLIDER S)
 
 
 LISTE
-bouge (SLIDER S, LISTE l)
+bouge (SLIDER S, LISTE l) //Gere le mouvement du Slider
 {
   char c;
   int a,f;

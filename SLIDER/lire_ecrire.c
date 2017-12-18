@@ -3,14 +3,14 @@
 #include "mes_types.h"
 
 SLIDER
-lire_taille (FILE * fichier, SLIDER S)
+lire_taille (FILE * fichier, SLIDER S) //Lit la taille dans le fichier
 {
   fscanf (fichier, "%d %d ", &S.L, &S.H);
   return S;
 }
 
 SLIDER
-lire_position (FILE * fichier, SLIDER S)
+lire_position (FILE * fichier, SLIDER S) //Lit la position du Slider dans le fichier
 {
   fscanf (fichier, "%d %d ", &S.x, &S.y);
   S.ps.x = S.x * Taille_Case + (Taille_Case / 2);
@@ -19,14 +19,14 @@ lire_position (FILE * fichier, SLIDER S)
 }
 
 SLIDER
-lire_sortie (FILE * fichier, SLIDER S)
+lire_sortie (FILE * fichier, SLIDER S) //Lit la position de la sortie dans le fichier
 {
   fscanf (fichier, "%d %d ", &S.sx, &S.sy);
   return S;
 }
 
 SLIDER
-lire_murs (FILE * fichier, SLIDER S)
+lire_murs (FILE * fichier, SLIDER S) //Alloue de la memoire & lit les murs dans le fichier 
 {
   fscanf (fichier, "%d ", &S.N);
   S.murx = malloc ((S.N) * sizeof (int));
@@ -47,12 +47,11 @@ lire_murs (FILE * fichier, SLIDER S)
 
 
 SLIDER
-init_slider (char *nom)
+init_slider (char *nom) // Initialise les valeurs de la structure du SLIDER
 {
 
   FILE *fichier = NULL;
   fichier = fopen (nom, "r");
-  //printf("nom = %s\n",nom);
   SLIDER S;
   S = lire_taille (fichier, S);
   S = lire_position (fichier, S);
@@ -62,8 +61,3 @@ init_slider (char *nom)
   return S;
 }
 
-
-void
-ecrire_fichier (SLIDER S, char *nom)
-{
-}

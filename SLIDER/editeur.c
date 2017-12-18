@@ -5,7 +5,7 @@
 #include "afficher.h"
 
 
-SLIDER ecrire_taille_init(FILE * f,int L,int H,SLIDER S)
+SLIDER ecrire_taille_init(FILE * f,int L,int H,SLIDER S) //ecrit la taille de la fenetre dans le fichier & affiche la grille
 {
 	fprintf(f,"%d %d \n",L,H);
 	S.L=L; S.H=H;
@@ -13,7 +13,7 @@ SLIDER ecrire_taille_init(FILE * f,int L,int H,SLIDER S)
 	afficher_grille(S);
 	return S;
 }
-SLIDER ecrire_position_sortie(FILE * f,SLIDER S)
+SLIDER ecrire_position_sortie(FILE * f,SLIDER S) //ecrit la position de la sortie dans le fichier & l'affiche
 {
 	int a,fl; char c; POINT p;
 	a=0;
@@ -29,7 +29,7 @@ SLIDER ecrire_position_sortie(FILE * f,SLIDER S)
 	return S;
 }
 
-SLIDER ecrire_position_slider(FILE * f,SLIDER S)
+SLIDER ecrire_position_slider(FILE * f,SLIDER S) //ecrit la position du Slider dans le fichier & l'affiche
 {
 	int a,fl; char c; POINT p;
 	a=0;
@@ -45,35 +45,21 @@ SLIDER ecrire_position_slider(FILE * f,SLIDER S)
 	return S;
 }
 
-SLIDER ecrire_nb_murs(FILE * f,SLIDER S) //demande nombre de murs
+SLIDER ecrire_nb_murs(FILE * f,SLIDER S) //Demande nombre de murs
 {
-	int a,fl,n,i; char c; POINT p;
-	a=n=i=0;
-	printf("indiquez le nombre de murs souhaité apuyer sur fleche haute ou fleche bas pour varier de 1, puis valider sur une touche");
-	while(a!=EST_TOUCHE){
-		a=wait_key_arrow_clic (&c, &fl, &p);
-		SDL_EnableKeyRepeat (0, SDL_DEFAULT_REPEAT_INTERVAL);
-		if (fl==FLECHE_HAUTE)
-		{ 
-			i++;
-			printf("i= %d",i);
-		}
-		if(fl==FLECHE_BAS) 
-		{ 
-			i--;
-			printf("i= %d",i);
-		}
-	}
-	S.N=i;
+	printf("indiquez le nombre de murs souhaité : ");
+	scanf("%d",&S.N);
+	fprintf(f,"%d\n",S.N);
+	printf("ok");
 	return S;
 }
 
-void dessine_un_mur(SLIDER S,int n)
+void dessine_un_mur(SLIDER S,int n) //Dessine les murs 1 par 1
 {
 	afficher_murs(S,n,n);
 }
 
-SLIDER place_mur(FILE * f, int fl,POINT p,int n, SLIDER S)
+SLIDER place_mur(FILE * f, int fl,POINT p,int n, SLIDER S) //Demande où mettre le mur dans la case & ecrire le mur dans le fichier 
 {
 	S.murx[n]=p.x/Taille_Case; S.mury[n]=p.y/Taille_Case;
 	if (fl==FLECHE_HAUTE) S.murz[n]=0;
@@ -86,7 +72,7 @@ SLIDER place_mur(FILE * f, int fl,POINT p,int n, SLIDER S)
 	return S;
 }
 
-SLIDER ecrire_murs(FILE * f,SLIDER S)
+SLIDER ecrire_murs(FILE * f,SLIDER S) //Cree les murs dans la memoire
 {
 	int a,fl,n; char c; POINT p;
 	a=n=0;
@@ -103,13 +89,14 @@ SLIDER ecrire_murs(FILE * f,SLIDER S)
 	return S;
 }
 
-void editeur(SLIDER S, int L,int H,char* nom)
+void editeur(SLIDER S, int L,int H,char* nom) //Gere l'edition
 {
 	FILE * f=NULL;
 	f=fopen(nom,"w+");
-	ecrire_taille_init(f,L,H,S);
-	ecrire_position_slider(f,S);
-	ecrire_position_sortie(f,S);
-	ecrire_nb_murs(f,S);
+	S=ecrire_taille_init(f,L,H,S);
+	S=ecrire_position_slider(f,S);
+	S=ecrire_position_sortie(f,S);
+	S=ecrire_nb_murs(f,S);
+	printf("sortie");
 	fclose(f);
 }

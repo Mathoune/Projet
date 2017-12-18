@@ -2,7 +2,7 @@
 #include "afficher.h"
 
 LISTE
-ajout (LISTE l, SLIDER S)
+ajout (LISTE l, SLIDER S) //Ajout un deplacement dans la liste
 {
   LISTE tmp = malloc (sizeof (struct element));
   tmp->ps.x = S.ps.x;
@@ -12,7 +12,7 @@ ajout (LISTE l, SLIDER S)
 }
 
 LISTE
-libere_liste (LISTE l)
+libere_liste (LISTE l) //Vide la liste : libere memoire
 {
 LISTE ll;
   while (l != NULL)
@@ -26,7 +26,7 @@ LISTE ll;
 }
 
 LISTE
-supp_un_element (LISTE l)
+supp_un_element (LISTE l) //Suprime le dernier element : pour l'undo
 {
   LISTE ll;
   if (l->suiv!= NULL)
@@ -39,7 +39,7 @@ supp_un_element (LISTE l)
 }
 
 LISTE
-retour_debut (LISTE l)
+retour_debut (LISTE l) //revient à la premiere pos
 {
   LISTE ll;
   while (l->suiv != NULL)

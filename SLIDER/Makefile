@@ -2,6 +2,7 @@ NOM=PROJET_IN301
 
 all: slider
 
+#Pour lancer l'executable
 run: slider
 	./slider test.slider
 
@@ -36,13 +37,15 @@ jeu.o: jeu.c deplacements.h afficher.h listes_memo.h
 editeur.o: editeur.c mes_types.h afficher.h
 	gcc -c -Wall `sdl-config --cflags` editeur.c
 
+#Pour aligner proprement le code
 indent:
 	indent *.c
 
+#Pour ouvrir tous les fichiers dans Geany
 editeur:
 	geany Makefile *.c *.h
 
-# Pour creer le zip a deposer sur e-campus
+# Pour creer le zip 
 zip:
 	rm -fr $(NOM)
 	rm -f $(NOM).zip
@@ -54,13 +57,11 @@ zip:
 	zip $(NOM).zip $(NOM)/*
 #	rm -fr $(NOM)
 
+#Pour lancer Valgrind
 valgrind: slider
 	valgrind ./slider test.slider
 
+#Pour supprimer les .o
 clean:
-	rm -rf $(NOM)
-	rm -f $(NOM).zip
-	rm -f lire_ecrire.o
-	rm -f afficher.o
-	rm -f slider.o
+	rm -f *.o
 	rm -f slider

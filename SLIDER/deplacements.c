@@ -7,7 +7,7 @@
 
 
 
-/*Test sur toute la ligne si il y a un mur vertical, s'il y en a un prend la valeur de la case à gauche, puis compare
+/*mur_VerticalG : Test sur toute la ligne si il y a un mur vertical, s'il y en a un prend la valeur de la case à gauche, puis compare
  * laquelle est plus pres du Slider*/
 int
 mur_verticalG (SLIDER S)	// Retourne la postion à gauche du mur le plus proche à gauche du slider
@@ -61,14 +61,15 @@ mur_horizontalH (SLIDER S)	// retourne la position du slider au dessus du mur le
       if (S.mury[n] == S.y && S.murx[n] == S.x && S.murz[n] == 0)
 	return S.y;
       if (S.murx[n] == S.x && S.mury[n] > S.y && S.murz[n] == 0)
-	tmp = S.mury[n];
+	tmp = S.mury[n]; 
       if (S.murx[n] == S.x && S.mury[n] > S.y && S.murz[n] == 6)
-	tmp = S.mury[n] + 1;
-      if (tmp > a)
+	tmp = S.mury[n]-1;
+      if (tmp < a)
 	a = tmp;
-    }
+	}
   if (a == S.H + 1)
     a = S.H - 1;
+    
   return a;
 }
 
@@ -94,7 +95,7 @@ mur_horizontalB (SLIDER S) 	// retourne la position du slider en dessous du mur 
 }
 
 SLIDER
-avance_droite (SLIDER S)
+avance_droite (SLIDER S) //Avance le Slider vers la droite
 {
   int a, i;
   a = mur_verticalD (S);
@@ -104,7 +105,6 @@ avance_droite (SLIDER S)
       a = S.sx;
     }
    S.x = a;
-    printf("a= %d",a);
   a = a * Taille_Case + (Taille_Case / 2);
   for (i = S.ps.x; i < a; i += Taille_Case)
     {
@@ -118,7 +118,7 @@ avance_droite (SLIDER S)
 }
 
 SLIDER
-avance_gauche (SLIDER S)
+avance_gauche (SLIDER S) //Avance le Slider vers la gauche
 {
   int a, i;
   a = mur_verticalG (S);
@@ -139,7 +139,7 @@ avance_gauche (SLIDER S)
 }
 
 SLIDER
-avance_haut (SLIDER S)
+avance_haut (SLIDER S) //Avance le Slider vers le haut
 {
   int a, i;
   a = mur_horizontalH (S);
@@ -161,7 +161,7 @@ avance_haut (SLIDER S)
 }
 
 SLIDER
-avance_bas (SLIDER S)
+avance_bas (SLIDER S) //Avance le Slider vers le bas
 {
   int a, i;
   a = mur_horizontalB (S);
@@ -182,7 +182,7 @@ avance_bas (SLIDER S)
 }
 
 SLIDER
-deplace (int f, SLIDER S)
+deplace (int f, SLIDER S) //gere tout le deplacement, selon lafleche appuyée
 {
   if (f == FLECHE_GAUCHE)
     S = avance_gauche (S);

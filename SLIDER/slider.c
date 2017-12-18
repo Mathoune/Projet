@@ -12,24 +12,24 @@ main (int argc, char *argv[])
 {
   printf ("Debut slider\n");
   
-  printf("%s",argv[1]); 
+   SLIDER S;
    
   if (argv[1][0]=='-'&&argv[1][1]=='c')
   {
-	int x,y;
-	x=atoi(argv[2]);
-	y=atoi(argv[3]);
-	editeur(x,y,argv[4]);  
+	int L,H;
+	L=atoi(argv[2]);
+	H=atoi(argv[3]);
+	editeur(S,L,H,argv[4]);  
   }
 
-  SLIDER S;
+  /*
   LISTE l = NULL;
   S = init_slider (argv[1]);
   afficher_slider (S);
   l = bouge (S, l);
   finir_affichage (S);
   libere_murs (S);
-  libere_liste (l);
+  libere_liste (l); */
   wait_escape();
   exit (0);
 }
