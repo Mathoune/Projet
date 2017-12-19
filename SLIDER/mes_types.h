@@ -1,6 +1,6 @@
 #include <uvsqgraphics.h>
 #define Taille_Case 50
-
+#define Demi_Case 25
 
 struct slider {
 	int L,H;	 	// Largeur et hauteur de la grille

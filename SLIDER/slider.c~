@@ -5,22 +5,31 @@
 #include "afficher.h"
 #include "listes_memo.h"
 #include "jeu.h"
+#include "editeur.h"
 
 int
 main (int argc, char *argv[])
 {
   printf ("Debut slider\n");
-  SLIDER S;
-  LISTE l=NULL;
+  
+   SLIDER S;
+   
+  if (argv[1][0]=='-'&&argv[1][1]=='c')
+  {
+	int L,H;
+	L=atoi(argv[2]);
+	H=atoi(argv[3]);
+	editeur(S,L,H,argv[4]);  
+  }
+
+  /*
+  LISTE l = NULL;
   S = init_slider (argv[1]);
   afficher_slider (S);
-
-  l = bouge (S,l);
-
-  printf ("Fin slider\n");
+  l = bouge (S, l);
   finir_affichage (S);
-  libere_liste(l);
-  libere_murs(S);
-
+  libere_murs (S);
+  libere_liste (l); */
+  wait_escape();
   exit (0);
 }
