@@ -1,0 +1,57 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <dirent.h>
+#include <string.h>
+
+
+#define nb_fichiers 3
+
+void lireDossier(char* s, DIR* rep)
+{
+	int i=0;
+	char* pos[nb_fichiers];
+    struct dirent* ent = NULL;
+   
+    while ((ent = readdir(rep)))
+   {
+      printf("FICHIER: %s\n", ent->d_name);
+      if (strcmp(ent->d_name, ".") !=0 && strcmp(ent->d_name, "..") !=0)
+      {
+		  pos[i]=ent->d_name;
+		  printf("pos = %s \n", pos[i]);
+		  i++;
+	  }
+      
+   }
+}
+
+void parcourirDossier(DIR* rep)
+{
+	char* chemin="dir_slider";
+    rep = opendir(chemin);
+
+    if (rep == NULL)
+    {
+        printf("Le dossier '%s' n'a pas pu etre ouvert", chemin);
+        exit(-1);
+    }
+
+    lireDossier(chemin, rep); 
+
+    //closedir(rep); /* Fermeture du répertoire. */
+}
+
+
+
+
+void ouvrir_dir()
+{
+	DIR* rep=NULL;
+	parcourirDossier(rep);
+	
+	if (closedir(rep)==-1)
+	{
+		printf("fermeture dossier impossible");
+		exit(-1);
+	}
+}

@@ -88,23 +88,25 @@ place_mur (FILE * f, int fl, POINT p, int n, SLIDER S)	//Affiche le mur dans le 
 SLIDER
 ecrire_murs (FILE * f, SLIDER S)	//Cree les murs dans la memoire
 {
- 
+
   int a, fl, n;
   char c;
   POINT p;
   a = n = 0;
   S.murx = malloc ((S.N) * sizeof (int));
   S.mury = malloc ((S.N) * sizeof (int));
-  S.murz = malloc ((S.N) * sizeof (int));  
-    printf ("Cliquez sur la case dans laquelle vous voulez un mur, puis sur une fleche pour la placer dans la case");
+  S.murz = malloc ((S.N) * sizeof (int));
+  printf
+    ("Cliquez sur la case dans laquelle vous voulez un mur, puis sur une fleche pour la placer dans la case");
 
   while (a != EST_CLIC && n != S.N)
     {
       a = wait_key_arrow_clic (&c, &fl, &p);
-      while (a != EST_FLECHE){
-	a = wait_key_arrow_clic (&c, &fl, &p);
-      S = place_mur (f, fl, p, n, S);
-		}
+      while (a != EST_FLECHE)
+	{
+	  a = wait_key_arrow_clic (&c, &fl, &p);
+	  S = place_mur (f, fl, p, n, S);
+	}
       n++;
     }
   return S;

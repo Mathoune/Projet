@@ -94,7 +94,7 @@ afficher_slider (SLIDER S)	//Affiche tout
 {
   initialiser_affichage (S);
   afficher_grille (S);
-  afficher_murs (S, 0, S.N-1);
+  afficher_murs (S, 0, S.N - 1);
   afficher_le_slider (S);
   afficher_sortie (S);
 }
@@ -103,7 +103,7 @@ void
 affichage (SLIDER S)
 {
   afficher_grille (S);
-  afficher_murs (S, 0, S.N-1);
+  afficher_murs (S, 0, S.N - 1);
   afficher_le_slider (S);
 }
 

@@ -51,7 +51,14 @@ init_slider (char *nom)		// Initialise les valeurs de la structure du SLIDER
 {
 
   FILE *fichier = NULL;
+  printf("nom du fichier = %s \n",nom);
   fichier = fopen (nom, "r");
+  if (fichier==NULL)
+  {
+	  printf("impossible d'ouvrir le fichier");
+	  exit(0);
+  }
+  
   SLIDER S;
   S = lire_taille (fichier, S);
   S = lire_position (fichier, S);

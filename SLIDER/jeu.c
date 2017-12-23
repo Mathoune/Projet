@@ -5,6 +5,8 @@
 #include "afficher.h"
 #include "deplacements.h"
 #include "listes_memo.h"
+#include "lire_ecrire.h"
+
 int
 sortie (SLIDER S)		//Test si le Slider est dans la sortie
 {
@@ -27,7 +29,7 @@ bouge (SLIDER S, LISTE l)	//Gere le mouvement du Slider
     {
       a = wait_key_arrow_clic (&c, &f, &p);
       SDL_EnableKeyRepeat (0, SDL_DEFAULT_REPEAT_INTERVAL);
-      S.x = (S.ps.x - Demi_Case )/ Taille_Case;
+      S.x = (S.ps.x - Demi_Case) / Taille_Case;
       S.y = (S.ps.y - Demi_Case) / Taille_Case;
 
       if (a == EST_FLECHE)
@@ -45,4 +47,17 @@ bouge (SLIDER S, LISTE l)	//Gere le mouvement du Slider
       S.coups++;
     }
   return l;
+}
+
+void
+partie(SLIDER S, char* nom, LISTE l)
+{
+	printf("nom du fichier %s \n",nom);
+	S=init_slider(nom);
+	afficher_slider (S);
+	l = bouge (S, l);
+	finir_affichage (S);
+	libere_murs (S);
+     libere_liste (l); 
+	wait_escape (); 
 }

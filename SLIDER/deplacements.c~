@@ -14,7 +14,7 @@ mur_verticalG (SLIDER S)	// Retourne la postion à gauche du mur le plus proche 
 {
   int a, tmp, n;
   a = tmp = -1;
-  for (n = 0; n < S.N; n++) 
+  for (n = 0; n < S.N; n++)
     {
       if (S.mury[n] == S.y && S.murx[n] == S.x && S.murz[n] == 9)
 	return S.x;
@@ -31,7 +31,7 @@ mur_verticalG (SLIDER S)	// Retourne la postion à gauche du mur le plus proche 
 }
 
 int
-mur_verticalD (SLIDER S) // Retourne la postion à droite du mur le plus proche à droite du slider
+mur_verticalD (SLIDER S)	// Retourne la postion à droite du mur le plus proche à droite du slider
 {
   int a, tmp, n;
   a = tmp = S.L + 1;
@@ -61,20 +61,20 @@ mur_horizontalH (SLIDER S)	// retourne la position du slider au dessus du mur le
       if (S.mury[n] == S.y && S.murx[n] == S.x && S.murz[n] == 0)
 	return S.y;
       if (S.murx[n] == S.x && S.mury[n] > S.y && S.murz[n] == 0)
-	tmp = S.mury[n]; 
+	tmp = S.mury[n];
       if (S.murx[n] == S.x && S.mury[n] > S.y && S.murz[n] == 6)
-	tmp = S.mury[n]-1;
+	tmp = S.mury[n] - 1;
       if (tmp < a)
 	a = tmp;
-	}
+    }
   if (a == S.H + 1)
     a = S.H - 1;
-    
+
   return a;
 }
 
 int
-mur_horizontalB (SLIDER S) 	// retourne la position du slider en dessous du mur le plus proche de lui
+mur_horizontalB (SLIDER S)	// retourne la position du slider en dessous du mur le plus proche de lui
 {
   int a, tmp, n;
   a = tmp = -2;
@@ -95,17 +95,17 @@ mur_horizontalB (SLIDER S) 	// retourne la position du slider en dessous du mur 
 }
 
 SLIDER
-avance_droite (SLIDER S) //Avance le Slider vers la droite
+avance_droite (SLIDER S)	//Avance le Slider vers la droite
 {
   int a, i;
   a = mur_verticalD (S);
-  
-  if (S.x<S.sx && a > S.sx && S.y == S.sy)
+
+  if (S.x < S.sx && a > S.sx && S.y == S.sy)
     {
       a = S.sx;
     }
-   S.x = a;
-  a = a * Taille_Case + (Taille_Case / 2);
+  S.x = a;
+  a = a * Taille_Case + (Demi_Case);
   for (i = S.ps.x; i < a; i += Taille_Case)
     {
       attendre (10);
@@ -118,16 +118,16 @@ avance_droite (SLIDER S) //Avance le Slider vers la droite
 }
 
 SLIDER
-avance_gauche (SLIDER S) //Avance le Slider vers la gauche
+avance_gauche (SLIDER S)	//Avance le Slider vers la gauche
 {
   int a, i;
   a = mur_verticalG (S);
-  if (S.x>S.sx && a<S.sx && S.y == S.sy)
+  if (S.x > S.sx && a < S.sx && S.y == S.sy)
     {
       a = S.sx;
     }
-   S.x = a;
-  a = a * Taille_Case + (Taille_Case / 2);
+  S.x = a;
+  a = a * Taille_Case + (Demi_Case);
   for (i = S.ps.x; i > a; i -= Taille_Case)
     {
       attendre (10);
@@ -139,16 +139,16 @@ avance_gauche (SLIDER S) //Avance le Slider vers la gauche
 }
 
 SLIDER
-avance_haut (SLIDER S) //Avance le Slider vers le haut
+avance_haut (SLIDER S)		//Avance le Slider vers le haut
 {
   int a, i;
   a = mur_horizontalH (S);
-  if (S.y<S.sy && a > S.sy && S.x == S.sx)
+  if (S.y < S.sy && a > S.sy && S.x == S.sx)
     {
       a = S.sy;
     }
   S.y = a;
-  a = a * Taille_Case + (Taille_Case / 2);
+  a = a * Taille_Case + (Demi_Case);
   for (i = S.ps.y; i < a; i += Taille_Case)
     {
       attendre (10);
@@ -161,16 +161,16 @@ avance_haut (SLIDER S) //Avance le Slider vers le haut
 }
 
 SLIDER
-avance_bas (SLIDER S) //Avance le Slider vers le bas
+avance_bas (SLIDER S)		//Avance le Slider vers le bas
 {
   int a, i;
   a = mur_horizontalB (S);
-  if (S.y>S.sy && a < S.sy && S.x == S.sx)
+  if (S.y > S.sy && a < S.sy && S.x == S.sx)
     {
       a = S.sy;
     }
-    S.y = a;
-  a = a * Taille_Case + (Taille_Case / 2);
+  S.y = a;
+  a = a * Taille_Case + (Demi_Case);
   for (i = S.ps.y; i > a; i -= Taille_Case)
     {
       attendre (10);
@@ -182,7 +182,7 @@ avance_bas (SLIDER S) //Avance le Slider vers le bas
 }
 
 SLIDER
-deplace (int f, SLIDER S) //gere tout le deplacement, selon lafleche appuyée
+deplace (int f, SLIDER S)	//gere tout le deplacement, selon lafleche appuyée
 {
   if (f == FLECHE_GAUCHE)
     S = avance_gauche (S);
